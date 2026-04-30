@@ -88,5 +88,5 @@ Pour accéder à l'espace admin, allez sur **http://127.0.0.1:8000/admin**, mett
 
 Pour toute soumission d'inquiétude,vous pouvez nous joindre sur bchain2026@gmail.com.
 
-Équipe B-chain MBH 2026.
+**Équipe B-chain MBH 2026.**
 
