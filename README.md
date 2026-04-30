@@ -1,6 +1,6 @@
 # Tracao-Backend
 
-Pour le test du projet c'est simple. suivre ces étapes
+Pour le test du projet il faudrait taper ces commandes là dans le terminal
 
 ### 1- Cloner le projet
 ```bash
