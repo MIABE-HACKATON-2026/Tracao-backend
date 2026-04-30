@@ -112,14 +112,14 @@ class ProfilePic(models.Model):
 class StockProducer(models.Model):
     producer = models.ForeignKey(TracaoUser, on_delete=models.CASCADE, limit_choices_to={'is_producer': True}, related_name='producer_stocks')
     cooperative = models.ForeignKey(TracaoUser, on_delete=models.CASCADE, limit_choices_to={'is_cooperative_source': True}, related_name='cooperative_source_stocks')
-    weight = models.FloatField(blank=True, null=True)
-    date = models.DateField()
 
     TYPE_CHOICES = [
         ('cacao', 'Cacao'),
         ('cafe', 'Cafe'),
     ]
 
+    weight = models.FloatField(blank=True, null=True)
+    date = models.DateField()
     product_type = models.CharField(max_length=100, choices=TYPE_CHOICES)
     species = models.TextField(blank=True, null=True)
     origin = models.CharField(max_length=200)
@@ -135,6 +135,20 @@ class StockProducer(models.Model):
 class StockOrigin(models.Model):
     cooperative = models.ForeignKey(TracaoUser, on_delete=models.CASCADE, limit_choices_to={'is_cooperative_source': True}, related_name='origin_stocks')
     producer_stock = models.ForeignKey(StockProducer, on_delete=models.CASCADE, related_name='origin_records')
+
+    TYPE_CHOICES = [
+        ('cacao', 'Cacao'),
+        ('cafe', 'Cafe'),
+    ]
+
+
+    weight = models.FloatField(blank=True, null=True)
+    date = models.DateField()
+    product_type = models.CharField(max_length=100, choices=TYPE_CHOICES)
+    species = models.TextField(blank=True, null=True)
+    origin = models.CharField(max_length=200)
+    surface_size = models.FloatField() # in hectares
+    production_size = models.FloatField() # in Kg
     
     
     def __str__(self):
