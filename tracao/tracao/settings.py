@@ -102,7 +102,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
 # User Authentication Settings
+
 AUTH_USER_MODEL = 'user.TracaoUser'
 
 

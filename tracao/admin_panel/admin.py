@@ -1,60 +1,115 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, UserChangeForm as BaseUserChangeForm
-from user.models import TracaoUser, Profile
+from user.models import (
+    TracaoUser,
+    ProfilePic,
+    StockProducer,
+    StockOrigin,
+    StockTransporter,
+    StockDestination,
+)
 
 
-
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ["user", "profile_picture", "id_picture"]
-
+# User creation
 
 class UserCreationForm(BaseUserCreationForm):
     class Meta:
         model = TracaoUser
-        fields = ["email", "first_name", "last_name","phone_number","country","city"]
+        fields = ["email", "first_name", "last_name", "phone_number", "country", "city"]
 
-    
 
 class UserChangeForm(BaseUserChangeForm):
     class Meta:
         model = TracaoUser
-        fields = ["email", "first_name", "last_name","phone_number","country","city","is_transporter","is_producer"]
+        fields = "__all__"
 
+
+@admin.register(TracaoUser)
 class UserAdmin(BaseUserAdmin):
-    # The forms to add and change user instances
-    
     form = UserChangeForm
     add_form = UserCreationForm
 
-    # The fields to be used in displaying the User model.
-    list_display = ["email", "first_name", "last_name", "phone_number","country","city","is_transporter","is_producer","created_at","updated_at"]
-    list_filter = ["is_transporter", "is_producer","is_superuser"]
-    
-    # Fieldsets for the change user form
+    list_display = [
+        "email", "first_name", "last_name", "phone_number", "country", "city",
+        "is_transporter", "is_producer", "is_cooperative_source", "is_cooperative_destination",
+        "is_staff", "is_active", "created_at",
+    ]
+    list_filter = [
+        "is_transporter", "is_producer",
+        "is_cooperative_source", "is_cooperative_destination",
+        "is_staff", "is_superuser", "is_active",
+    ]
+
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
-        ("Personal info", {"fields": ["first_name", "last_name", "phone_number","country","city"]}),
-        ("Permissions", {"fields": ["is_transporter", "is_producer", "is_staff", "is_superuser", "groups", "user_permissions"]}),
+        ("Informations personnelles", {"fields": ["first_name", "last_name", "cooperative_name", "phone_number", "country", "city"]}),
+        ("Rôles métier", {"fields": ["is_transporter", "is_producer", "is_cooperative_source", "is_cooperative_destination"]}),
+        ("Permissions", {"fields": ["is_staff", "is_active", "is_superuser", "groups", "user_permissions"]}),
+        ("Dates", {"fields": ["last_login"], "classes": ["collapse"]}),
     ]
-    
-    # Fieldsets for the add user form
+
     add_fieldsets = [
-        (
-            None,
-            {
-                "classes": ["wide"],
-                "fields": ["email", "first_name", "last_name","phone_number","country","city", "is_transporter","is_producer","is_staff","is_superuser", "password"],
-            },
-        ),
+        (None, {
+            "classes": ["wide"],
+            "fields": [
+                "email", "password1", "password2",
+                "first_name", "last_name", "cooperative_name",
+                "phone_number", "country", "city",
+                "is_transporter", "is_producer",
+                "is_cooperative_source", "is_cooperative_destination",
+                "is_staff", "is_active",
+            ],
+        }),
     ]
-    
-    search_fields = ["email", "first_name", "last_name"]
+
+    search_fields = ["email", "first_name", "last_name", "cooperative_name"]
     ordering = ["email"]
-    filter_horizontal = []
-
-# Register the new UserAdmin
-admin.site.register(TracaoUser, UserAdmin)
+    filter_horizontal = ["groups", "user_permissions"]
+    readonly_fields = ["last_login"]
 
 
+# profil picture
+
+@admin.register(ProfilePic)
+class ProfilePicAdmin(admin.ModelAdmin):
+    list_display = ["user", "profile_picture", "id_picture"]
+    search_fields = ["user__email", "user__first_name", "user__last_name"]
+
+
+# Stock Management 
+
+
+@admin.register(StockProducer)
+class StockProducerAdmin(admin.ModelAdmin):
+    list_display = ["producer", "cooperative", "product_type", "weight", "date", "origin", "surface_size", "production_size"]
+    list_filter = ["product_type", "date", "origin"]
+    search_fields = ["producer__first_name", "producer__last_name", "cooperative__cooperative_name", "origin"]
+    date_hierarchy = "date"
+    ordering = ["-date"]
+
+
+@admin.register(StockOrigin)
+class StockOriginAdmin(admin.ModelAdmin):
+    list_display = ["cooperative", "producer_stock"]
+    search_fields = ["cooperative__cooperative_name", "producer_stock__producer__first_name"]
+
+
+@admin.register(StockTransporter)
+class StockTransporterAdmin(admin.ModelAdmin):
+    list_display = ["transporter", "cooperative", "stock_origin"]
+    search_fields = [
+        "transporter__first_name", "transporter__last_name",
+        "cooperative__cooperative_name",
+    ]
+    list_filter = ["cooperative"]
+
+
+@admin.register(StockDestination)
+class StockDestinationAdmin(admin.ModelAdmin):
+    list_display = ["cooperative", "transporter", "stock_origin"]
+    search_fields = [
+        "cooperative__cooperative_name",
+        "transporter__first_name", "transporter__last_name",
+    ]
+    list_filter = ["cooperative"]
