@@ -111,9 +111,9 @@ Une fois le serveur lancé, voici les points d'entrée principaux pour tester le
 
 ---
 
-## 📞 Contact & Support
+## Contact & Support
 
 Pour toute soumission d'inquiétude ou retour, n'hésitez pas à nous joindre à l'adresse suivante : 
-📧 **bchain2026@gmail.com**
+ **bchain2026@gmail.com**
 
 **Équipe B-chain MBH 2026.**
