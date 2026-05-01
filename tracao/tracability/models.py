@@ -33,3 +33,13 @@ class TransactionEvent(models.Model):
 
     def __str__(self):
         return f"{self.event_type} - Lot {self.batch.batch_number}"
+
+class BatchCertification(models.Model):
+    batch = models.ForeignKey(ProductBatch, on_delete=models.CASCADE, related_name='certifications')
+    certifier = models.ForeignKey(TracaoUser, on_delete=models.CASCADE, related_name='issued_certifications')
+    certification_name = models.CharField(max_length=100) # ex: 'Fairtrade', 'Bio EU', 'Rainforest Alliance'
+    issued_at = models.DateTimeField(auto_now_add=True)
+    notes = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.certification_name} pour {self.batch.batch_number}"

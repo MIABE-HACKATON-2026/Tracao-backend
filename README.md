@@ -1,9 +1,20 @@
-#  Tracao - Backend
+#  Tracao - Backend (ChainCacao)
 
-Bienvenue sur le dépôt du Backend de **Tracao**, une plateforme innovante dédiée à la traçabilité des produits agricoles (notamment le cacao et le café). 
-Cette API permet de suivre le trajet complet d'un produit, du producteur jusqu'à l'acheteur final, en passant par les coopératives et les transporteurs.
+Bienvenue sur le dépôt du Backend de **Tracao (ChainCacao)**, une plateforme innovante et ultra-sécurisée dédiée à la traçabilité des produits agricoles (notamment le cacao et le café) au Togo. 
+
+Cette API permet de suivre le trajet complet d'un produit, **du producteur jusqu'à l'importateur européen**, en garantissant l'intégrité des données grâce à la technologie **Blockchain** et en répondant aux exigences strictes de la réglementation **EUDR**.
 
 Ce backend est propulsé par **Django** et **Django Ninja Extra** pour offrir des API RESTful rapides, sécurisées et facilement documentées.
+
+---
+
+##  Fonctionnalités Clés (Spécial Hackathon)
+
+1. ** Ancrage Blockchain (Vyper / Web3)** : Chaque étape logistique (Récolte, Stockage Coopérative, Transport, Export) est "gravée" sur un Smart Contract inaltérable. La fraude sur le poids ou l'origine devient impossible.
+2. ** Conformité EUDR (Polygones GPS)** : L'API permet d'enregistrer et de faire valider par une coopérative le tracé GPS exact du champ de l'agriculteur. Cette origine géographique précise suit le sac de cacao jusqu'en Europe.
+3. ** Système de Certification Premium** : Les organismes certificateurs (Bio, Fairtrade) peuvent apposer leurs labels officiels directement sur les lots enregistrés.
+4. ** Système KYC (Know Your Customer)** : Un module de vérification d'identité strict (Pièce d'identité Recto/Verso + Selfie) avec un workflow d'approbation administrateur pour s'assurer que chaque acteur est légitime.
+5. ** Scanner QR Code API** : Un endpoint de vérification (`/api/tracability/verify/`) lit directement les preuves sur la blockchain et affiche les labels pour l'acheteur final européen.
 
 ---
 
@@ -15,7 +26,7 @@ Avant de commencer, assurez-vous d'avoir installé sur votre machine :
 
 ---
 
-## ⚙️ Installation et Démarrage Rapide
+##  Installation et Démarrage Rapide
 
 Suivez ces étapes pour configurer et lancer le projet localement.
 
@@ -66,7 +77,7 @@ pip install -r requirements.txt
 
 ### 5. Appliquer les migrations de base de données
 
-Le projet utilise une base de données par défaut pour le développement. Naviguez dans le sous-dossier `tracao` (où se trouve `manage.py`) et initialisez la base de données :
+Le projet utilise une base de données locale pour le développement. Naviguez dans le sous-dossier `tracao` (où se trouve `manage.py`) et initialisez la base de données :
 
 ```bash
 cd tracao
@@ -76,7 +87,7 @@ python manage.py migrate
 
 ### 6. Créer un compte Administrateur (Superuser)
 
-Pour accéder au panel d'administration et gérer les utilisateurs, les rôles et les stocks, créez un compte admin :
+Pour accéder au panel d'administration central et gérer les utilisateurs (approuver les KYC, voir les fermes GPS, etc.), créez un compte admin :
 
 ```bash
 python manage.py createsuperuser
@@ -94,26 +105,28 @@ Vous êtes maintenant prêt à démarrer l'application ! Toujours dans le dossie
 python manage.py runserver
 ```
 
+*(Note : Au démarrage, le serveur va automatiquement compiler et déployer le Smart Contract Traceability.vy sur une blockchain locale virtuelle !)*
+
 Si tout s'est bien passé, le serveur est en ligne sans erreur. Vous pouvez y accéder via :
  **http://127.0.0.1:8000/**
 
 ---
 
-##  Découverte des Fonctionnalités
+##  Découverte des Interfaces
 
-Une fois le serveur lancé, voici les points d'entrée principaux pour tester le projet :
+Une fois le serveur lancé, voici les points d'entrée principaux pour exploiter le projet :
 
 -  **Panel d'Administration Django :** [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
-  *Connectez-vous avec le compte Superuser créé à l'étape 6. Vous pourrez y voir et tester toutes les fonctionnalités du site avec tous les droits (gestion des utilisateurs, traçabilité, etc.).*
+  *Connectez-vous avec le compte Superuser. Vous pourrez y valider les statuts KYC, visualiser les fermes GPS (Polygones), et gérer toutes les étapes de logistique manuellement.*
 
-- **Documentation interactive de l'API (Swagger) :** [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
-  *Visualisez et testez tous les endpoints de l'API (Inscription, Gestion des stocks, Traçabilité) de manière visuelle directement depuis votre navigateur.*
+- **Documentation Interactive de l'API (Swagger) :** [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
+  *C'est le point d'entrée pour les développeurs Frontend/Mobile. Toutes les routes d'inscription (`exporter_signup`, `certifier_signup`), d'upload de fichiers KYC, et de tracking y sont répertoriées de manière visuelle et testable en temps réel.*
 
 ---
 
-## Contact & Support
+##  Contact & Support
 
 Pour toute soumission d'inquiétude ou retour, n'hésitez pas à nous joindre à l'adresse suivante : 
  **bchain2026@gmail.com**
 
-**Équipe B-chain MBH 2026.**
+**Équipe B-chain MBH 2026. En route vers la traçabilité absolue !**

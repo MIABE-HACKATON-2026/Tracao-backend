@@ -4,11 +4,13 @@ from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, 
 from user.models import (
     TracaoUser,
     ProfilePic,
+    KYCDocument,
 )
 from stock.models import (
     StockProducer,
     StockOrigin,
     StockTransporter,
+    StockDestination,
 )
 
 
@@ -34,18 +36,23 @@ class UserAdmin(BaseUserAdmin):
     list_display = [
         "email", "first_name", "last_name", "phone_number", "country", "city",
         "is_transporter", "is_producer", "is_cooperative_source", "is_cooperative_destination",
+        "is_exporter", "is_certifier", "is_eu_importer", "is_government",
         "is_staff", "is_active", "created_at",
     ]
     list_filter = [
         "is_transporter", "is_producer",
         "is_cooperative_source", "is_cooperative_destination",
+        "is_exporter", "is_certifier", "is_eu_importer", "is_government",
         "is_staff", "is_superuser", "is_active",
     ]
 
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
         ("Informations personnelles", {"fields": ["first_name", "last_name", "cooperative_name", "phone_number", "country", "city"]}),
-        ("Rôles métier", {"fields": ["is_transporter", "is_producer", "is_cooperative_source", "is_cooperative_destination"]}),
+        ("Rôles métier", {"fields": [
+            "is_transporter", "is_producer", "is_cooperative_source", "is_cooperative_destination",
+            "is_exporter", "is_certifier", "is_eu_importer", "is_government"
+        ]}),
         ("Permissions", {"fields": ["is_staff", "is_active", "is_superuser", "groups", "user_permissions"]}),
         ("Dates", {"fields": ["last_login"], "classes": ["collapse"]}),
     ]
@@ -59,6 +66,7 @@ class UserAdmin(BaseUserAdmin):
                 "phone_number", "country", "city",
                 "is_transporter", "is_producer",
                 "is_cooperative_source", "is_cooperative_destination",
+                "is_exporter", "is_certifier", "is_eu_importer", "is_government",
                 "is_staff", "is_active",
             ],
         }),
@@ -74,8 +82,16 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(ProfilePic)
 class ProfilePicAdmin(admin.ModelAdmin):
-    list_display = ["user", "profile_picture", "id_picture"]
+    list_display = ["user", "profile_picture"]
     search_fields = ["user__email", "user__first_name", "user__last_name"]
+
+@admin.register(KYCDocument)
+class KYCDocumentAdmin(admin.ModelAdmin):
+    list_display = ["user", "status", "submitted_at", "reviewed_at"]
+    list_filter = ["status", "submitted_at"]
+    search_fields = ["user__email", "user__first_name", "user__last_name"]
+    readonly_fields = ["submitted_at"]
+    list_editable = ["status"]
 
 
 # Stock Management 
@@ -105,4 +121,7 @@ class StockTransporterAdmin(admin.ModelAdmin):
     ]
     list_filter = ["cooperative"]
 
-
+@admin.register(StockDestination)
+class StockDestinationAdmin(admin.ModelAdmin):
+    list_display = ["exporter", "transporter", "stock_transporter"]
+    search_fields = ["exporter__cooperative_name", "transporter__first_name", "transporter__last_name"]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProductBatch, TransactionEvent
+from .models import ProductBatch, TransactionEvent, BatchCertification
 
 @admin.register(ProductBatch)
 class ProductBatchAdmin(admin.ModelAdmin):
@@ -12,3 +12,9 @@ class TransactionEventAdmin(admin.ModelAdmin):
     list_display = ('batch', 'event_type', 'sender', 'receiver', 'timestamp')
     search_fields = ('batch__batch_number', 'sender__email', 'receiver__email')
     list_filter = ('event_type', 'timestamp')
+
+@admin.register(BatchCertification)
+class BatchCertificationAdmin(admin.ModelAdmin):
+    list_display = ('batch', 'certifier', 'certification_name', 'issued_at')
+    search_fields = ('batch__batch_number', 'certification_name')
+    readonly_fields = ('issued_at',)

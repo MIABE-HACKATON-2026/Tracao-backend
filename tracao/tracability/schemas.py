@@ -1,6 +1,6 @@
 from ninja import ModelSchema, Schema
 from typing import List, Optional
-from tracability.models import ProductBatch, TransactionEvent
+from tracability.models import ProductBatch, TransactionEvent, BatchCertification
 
 class TransactionEventSchema(ModelSchema):
     class Meta:
@@ -17,6 +17,17 @@ class TransactionEventSchema(ModelSchema):
     @staticmethod
     def resolve_receiver_email(obj):
         return obj.receiver.email if obj.receiver else None
+
+class BatchCertificationSchema(ModelSchema):
+    class Meta:
+        model = BatchCertification
+        fields = ['certification_name', 'issued_at', 'notes']
+
+    certifier_email: Optional[str] = None
+
+    @staticmethod
+    def resolve_certifier_email(obj):
+        return obj.certifier.email if obj.certifier else None
 
 class ProductBatchSchema(ModelSchema):
     class Meta:
@@ -41,3 +52,10 @@ class ProductBatchSchema(ModelSchema):
 
 class ProductJourneySchema(ProductBatchSchema):
     events: List[TransactionEventSchema]
+    certifications: List[BatchCertificationSchema] = []
+
+class CertifyBatchRequest(Schema):
+    batch_number: str
+    certifier_id: int
+    certification_name: str
+    notes: Optional[str] = None
