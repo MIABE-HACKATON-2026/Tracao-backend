@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'stock',
+    'tracability',
     'admin_panel',
     'phonenumber_field',
     'django_countries',
+    'ninja_extra',
+    'ninja_jwt',
 ]
 
 MIDDLEWARE = [

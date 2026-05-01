@@ -4,10 +4,11 @@ from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, 
 from user.models import (
     TracaoUser,
     ProfilePic,
+)
+from stock.models import (
     StockProducer,
     StockOrigin,
     StockTransporter,
-    StockDestination,
 )
 
 
@@ -105,11 +106,3 @@ class StockTransporterAdmin(admin.ModelAdmin):
     list_filter = ["cooperative"]
 
 
-@admin.register(StockDestination)
-class StockDestinationAdmin(admin.ModelAdmin):
-    list_display = ["cooperative", "transporter", "stock_origin"]
-    search_fields = [
-        "cooperative__cooperative_name",
-        "transporter__first_name", "transporter__last_name",
-    ]
-    list_filter = ["cooperative"]
