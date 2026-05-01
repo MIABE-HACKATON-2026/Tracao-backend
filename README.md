@@ -1,4 +1,4 @@
-# 🌾 Tracao - Backend
+#  Tracao - Backend
 
 Bienvenue sur le dépôt du Backend de **Tracao**, une plateforme innovante dédiée à la traçabilité des produits agricoles (notamment le cacao et le café). 
 Cette API permet de suivre le trajet complet d'un produit, du producteur jusqu'à l'acheteur final, en passant par les coopératives et les transporteurs.
@@ -7,7 +7,7 @@ Ce backend est propulsé par **Django** et **Django Ninja Extra** pour offrir de
 
 ---
 
-## 🚀 Prérequis
+##  Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé sur votre machine :
 - **Python** (version 3.10 ou supérieure)
@@ -95,18 +95,18 @@ python manage.py runserver
 ```
 
 Si tout s'est bien passé, le serveur est en ligne sans erreur. Vous pouvez y accéder via :
-👉 **http://127.0.0.1:8000/**
+ **http://127.0.0.1:8000/**
 
 ---
 
-## 🔍 Découverte des Fonctionnalités
+##  Découverte des Fonctionnalités
 
 Une fois le serveur lancé, voici les points d'entrée principaux pour tester le projet :
 
-- 🛡️ **Panel d'Administration Django :** [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+-  **Panel d'Administration Django :** [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
   *Connectez-vous avec le compte Superuser créé à l'étape 6. Vous pourrez y voir et tester toutes les fonctionnalités du site avec tous les droits (gestion des utilisateurs, traçabilité, etc.).*
 
-- 📖 **Documentation interactive de l'API (Swagger) :** [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
+- **Documentation interactive de l'API (Swagger) :** [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
   *Visualisez et testez tous les endpoints de l'API (Inscription, Gestion des stocks, Traçabilité) de manière visuelle directement depuis votre navigateur.*
 
 ---
