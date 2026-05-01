@@ -1,92 +1,119 @@
-# Tracao-Backend
+# 🌾 Tracao - Backend
 
-Pour le test du projet il faudrait taper ces commandes là dans le terminal
+Bienvenue sur le dépôt du Backend de **Tracao**, une plateforme innovante dédiée à la traçabilité des produits agricoles (notamment le cacao et le café). 
+Cette API permet de suivre le trajet complet d'un produit, du producteur jusqu'à l'acheteur final, en passant par les coopératives et les transporteurs.
 
-### 1- Cloner le projet
+Ce backend est propulsé par **Django** et **Django Ninja Extra** pour offrir des API RESTful rapides, sécurisées et facilement documentées.
 
-Pour cloner,allez dans le dossier que vous voulez utiliser et faire :
+---
+
+## 🚀 Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé sur votre machine :
+- **Python** (version 3.10 ou supérieure)
+- **Git**
+
+---
+
+## ⚙️ Installation et Démarrage Rapide
+
+Suivez ces étapes pour configurer et lancer le projet localement.
+
+### 1. Cloner le projet
+
+Ouvrez votre terminal, placez-vous dans le dossier de votre choix et exécutez :
 
 ```bash
 git clone https://github.com/MIABE-HACKATON-2026/Tracao-backend.git
-```
-
-### 2- Créer un environnement virtuel ( s'assurer que python est préalablement installé )
-
-Accédez au dossier Tracao-Backend ( ou le dossier où vous verrez le fichier requirements.txt ) et créer le venv
-
-```bash
 cd Tracao-backend
-
-python -m venv venv ( Windows )
-
-python3 -m venv venv ( Linux )
 ```
 
-### 3- Activer le venv
+### 2. Créer un environnement virtuel
 
+Il est fortement recommandé d'utiliser un environnement virtuel pour isoler les dépendances du projet.
+
+**Sur Windows :**
 ```bash
-venv/Scripts/activate ( Windows )
-
-source venv/bin/activate ( Linux )
+python -m venv venv
 ```
 
-### 4- Installer les dépendances
+**Sur Linux / macOS :**
+```bash
+python3 -m venv venv
+```
 
-S'assurer que vous êtes dans le dossier comportant le fichier requirements.txt
+### 3. Activer l'environnement virtuel
+
+**Sur Windows :**
+```bash
+venv\Scripts\activate
+```
+
+**Sur Linux / macOS :**
+```bash
+source venv/bin/activate
+```
+
+*(Votre terminal devrait maintenant afficher `(venv)` au début de la ligne de commande).*
+
+### 4. Installer les dépendances
+
+Assurez-vous d'être dans le dossier contenant le fichier `requirements.txt` (à la racine), puis exécutez :
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5- Faire des migrations
+### 5. Appliquer les migrations de base de données
 
-Accéder au dossier tracao/ et faire les migrations
+Le projet utilise une base de données par défaut pour le développement. Naviguez dans le sous-dossier `tracao` (où se trouve `manage.py`) et initialisez la base de données :
 
 ```bash
 cd tracao
-
 python manage.py makemigrations
-
 python manage.py migrate
 ```
 
-### 6- Tester
+### 6. Créer un compte Administrateur (Superuser)
 
-Après les migrations, il faut tester
-
-```bash
-
-python manage.py runserver
-
-```
-
-Si tout a été bien fait,il n'y aura pas d'erreur.
-Visiter le lien pour confirmer le fonctionnement ( habituellement **http://127.0.0.1:8000/** )
-
-### 7- créer un compte admin
-
-Pour se faire vous ferez : 
+Pour accéder au panel d'administration et gérer les utilisateurs, les rôles et les stocks, créez un compte admin :
 
 ```bash
-
 python manage.py createsuperuser
+```
+Laissez-vous guider par les instructions à l'écran :
+- **Email** : (ex: admin@tracao.com)
+- **Password** : (Tapez votre mot de passe. *Note : Rien ne s'affiche lors de la frappe pour des raisons de sécurité*)
+- **Password (again)** : (Confirmez le mot de passe)
 
-# on vous demandera de remplir les infos pour le compte
+### 7. Lancer le serveur de développement
 
-Email: ( mettre ce que vous voulez )
-Password : ( mettre ce que vous voulez )
+Vous êtes maintenant prêt à démarrer l'application ! Toujours dans le dossier `tracao`, exécutez :
 
+```bash
+python manage.py runserver
 ```
 
-NB: En tapant le mot de passe, rien ne s'affiche pour des raisons de sécurité
+Si tout s'est bien passé, le serveur est en ligne sans erreur. Vous pouvez y accéder via :
+👉 **http://127.0.0.1:8000/**
 
-En créant le super utilisateur, vous pouvez voir et tester toutes les fonctionnalités du site avec tous les droits.
+---
 
-Pour accéder à l'espace admin, allez sur **http://127.0.0.1:8000/admin**, mettez les identifiants et connectez-vous.
+## 🔍 Découverte des Fonctionnalités
 
-# 
+Une fois le serveur lancé, voici les points d'entrée principaux pour tester le projet :
 
-Pour toute soumission d'inquiétude,vous pouvez nous joindre sur bchain2026@gmail.com.
+- 🛡️ **Panel d'Administration Django :** [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+  *Connectez-vous avec le compte Superuser créé à l'étape 6. Vous pourrez y voir et tester toutes les fonctionnalités du site avec tous les droits (gestion des utilisateurs, traçabilité, etc.).*
+
+- 📖 **Documentation interactive de l'API (Swagger) :** [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
+  *Visualisez et testez tous les endpoints de l'API (Inscription, Gestion des stocks, Traçabilité) de manière visuelle directement depuis votre navigateur.*
+
+---
+
+## 📞 Contact & Support
+
+Pour toute soumission d'inquiétude ou retour, n'hésitez pas à nous joindre à l'adresse suivante : 
+📧 **bchain2026@gmail.com**
 
 **Équipe B-chain MBH 2026.**
-
