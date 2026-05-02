@@ -10,11 +10,11 @@ Ce backend est propulsé par **Django** et **Django Ninja Extra** pour offrir de
 
 ##  Fonctionnalités Clés (Spécial Hackathon)
 
-1. ** Ancrage Blockchain (Vyper / Web3)** : Chaque étape logistique (Récolte, Stockage Coopérative, Transport, Export) est "gravée" sur un Smart Contract inaltérable. La fraude sur le poids ou l'origine devient impossible.
-2. ** Conformité EUDR (Polygones GPS)** : L'API permet d'enregistrer et de faire valider par une coopérative le tracé GPS exact du champ de l'agriculteur. Cette origine géographique précise suit le sac de cacao jusqu'en Europe.
-3. ** Système de Certification Premium** : Les organismes certificateurs (Bio, Fairtrade) peuvent apposer leurs labels officiels directement sur les lots enregistrés.
-4. ** Système KYC (Know Your Customer)** : Un module de vérification d'identité strict (Pièce d'identité Recto/Verso + Selfie) avec un workflow d'approbation administrateur pour s'assurer que chaque acteur est légitime.
-5. ** Scanner QR Code API** : Un endpoint de vérification (`/api/tracability/verify/`) lit directement les preuves sur la blockchain et affiche les labels pour l'acheteur final européen.
+1. **Ancrage Blockchain (Vyper / Web3)** : Chaque étape logistique (Récolte, Stockage Coopérative, Transport, Export) est "gravée" sur un Smart Contract inaltérable. La fraude sur le poids ou l'origine devient impossible.
+2. **Conformité EUDR (Polygones GPS)** : L'API permet d'enregistrer et de faire valider par une coopérative le tracé GPS exact du champ de l'agriculteur. Cette origine géographique précise suit le sac de cacao jusqu'en Europe.
+3. **Système de Certification Premium** : Les organismes certificateurs (Bio, Fairtrade) peuvent apposer leurs labels officiels directement sur les lots enregistrés.
+4. **Système KYC (Know Your Customer)** : Un module de vérification d'identité strict (Pièce d'identité Recto/Verso + Selfie) avec un workflow d'approbation administrateur pour s'assurer que chaque acteur est légitime.
+5. **Scanner QR Code API** : Un endpoint de vérification (`/api/tracability/verify/`) lit directement les preuves sur la blockchain et affiche les labels pour l'acheteur final européen.
 
 ---
 
